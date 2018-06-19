@@ -74,5 +74,21 @@ fun main(args: Array<String>) {
         }
     }
 
+    val url = "localhost:4200"
+    val obj = URL(url)
+
+    with(obj.openConnection() as HttpURLConnection) {
+
+        BufferedReader(InputStreamReader(inputStream)).use {
+            val response = StringBuffer()
+
+            var inputLine = it.readLine()
+            while (inputLine != null) {
+                response.append(inputLine)
+                inputLine = it.readLine()
+            }
+            println(response.toString())
+        }
+    }
 
 }
